@@ -12,4 +12,5 @@ const dbConnect = () => {
     .catch ( error  => console.log ("Can't connect to Database." + error ));  
 }
 
+// Exporto el acceso al archivo
 module.exports = dbConnect;

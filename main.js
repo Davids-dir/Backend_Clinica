@@ -1,16 +1,17 @@
-// Inicio de la Aplicacion
+// Inicio de la Aplicacion y accesos
 const express = require ('express');
 const app = express ();
 const dbConnect = require ('./config/db_connect');
+const customersRouter = require ('./routes/customers');
 
 // Middleware
 app.use (express.json ());
 
-// Routes
+// Rutas de uso
+app.use ('/customers', customersRouter);
 
-
-// Connection
+// Conexion a la Base de Datos
 dbConnect ();
 
-// Server Log
+// Inicio del servidor
 app.listen (3000, () => console.log ('Server is up...'));
