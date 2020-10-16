@@ -1,7 +1,7 @@
 const dbConnect = () => {
 
     const mongoose = require ('mongoose');
-    const URI ='mongodb+srv://David_Admin:Jj0LlXiLsUTAF9GW@bootcamp.xi7ll.mongodb.net/agenda_clinica?retryWrites=true&w=majority';
+    const URI ='mongodb+srv://David_Admin:v4OSfaZtEmqxhh9l@bootcamp.xi7ll.mongodb.net/agenda_clinica?retryWrites=true&w=majority';
 
     mongoose.connect ( URI, {
         useNewUrlParser: true,
