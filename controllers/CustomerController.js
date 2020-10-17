@@ -51,7 +51,7 @@ const CustomerController = {
                 }
                 else {
                     res.status (201).send ({ message: 'Las credenciales introducidas no son validas.'})
-                }
+                };
             };
         } 
         catch (error) {
@@ -64,12 +64,19 @@ const CustomerController = {
 
         try {
             const logoutCostumer = await CustomerModel.findOne ({
-                
-            })    
-        } 
-        catch (error) {
+                email: req.params.email
+            })
             
+            if ( ! logoutCostumer ) {
+                res.status (201).send ({ message: 'Las credenciales introducidas no son validas.'})
+            }
+            else {
+                res.status (201).send ({ message: 'La sesion se ha cerrado correctamente.' })
+            }       
         }
+        catch (error) {
+            res.status (500).send ({ message: 'Se ha producido un error.', error})
+        };
     }
 }
 

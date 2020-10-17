@@ -2,9 +2,11 @@
 const router = require ('express').Router ();
 const CustomerController = require ('../controllers/CustomerController');
 
-// FALTA REALIZAR LAS ACCIONES DE CLIENTE
+// Acciones del cliente
 router.post ('/signup', CustomerController.signup);
-router.get ('/login', CustomerController.login);
+router.post ('/login', CustomerController.login);
+
+router.get ('/logout/:email', CustomerController.logout);
 
 // Exporto el acceso al archivo
 module.exports = router;
