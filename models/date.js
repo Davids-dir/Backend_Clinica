@@ -19,4 +19,6 @@ const DateSchema = mongoose.Schema ({
     }
 })
 
+const DateModel = mongoose.model ('date', DateSchema);
+
 module.exports = DateModel;

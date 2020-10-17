@@ -14,7 +14,7 @@ app.use (express.json ());
 
 // Rutas de uso y ENDPOINTS
 app.use ('/customers', customersRouter);
-app.use ('/dates', datesRouter);
+app.use ('/dates',datesRouter);
 
 // Conexion a la Base de Datos
 dbConnect ();
