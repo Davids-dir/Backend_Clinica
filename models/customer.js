@@ -17,7 +17,11 @@ const CustomerSchema = mongoose.Schema ({
     password: {
         type: String,
         required: true
-    }
+    },
+    dates: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Date',
+    },]
 })
 
 const CustomerModel = mongoose.model ('customer', CustomerSchema);

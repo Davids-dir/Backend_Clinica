@@ -39,7 +39,7 @@ const CustomerController = {
             const loginCostumer = await CustomerModel.findOne ({
                 email: req.body.email,
             })
-
+             
             if ( ! loginCostumer ) {
                 res.status (201).send ({ message: 'Las credenciales introducidas no son validas.'})
             }
@@ -66,7 +66,7 @@ const CustomerController = {
             const logoutCostumer = await CustomerModel.findOne ({
                 email: req.params.email
             })
-            
+
             if ( ! logoutCostumer ) {
                 res.status (201).send ({ message: 'Las credenciales introducidas no son validas.'})
             }

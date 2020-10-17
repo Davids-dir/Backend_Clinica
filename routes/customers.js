@@ -2,7 +2,7 @@
 const router = require ('express').Router ();
 const CustomerController = require ('../controllers/CustomerController');
 
-// Acciones del cliente
+// Acciones del cliente y ENDPOINTS
 router.post ('/signup', CustomerController.signup);
 router.post ('/login', CustomerController.login);
 
