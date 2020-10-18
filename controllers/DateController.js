@@ -30,6 +30,18 @@ const DateController = {
             res.status (500).send ({ message: 'No hemos podido obtener la informacion requerida.'})
         }
     },
+
+    async cancelDate ( req, res ) {
+        try {
+            const remove = await DateModel.remove ({
+                _id: req.params.id
+            }).deleteOne ();
+            res.status (201).send ({ message: 'La cita ha sido cancelada con exito.' })
+        } 
+        catch (error) {
+            res.status (500).send ({ message: 'Ha habido un problema al realizar la operacion.', error })
+        }
+    }
 }
 
 module.exports = DateController;
