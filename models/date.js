@@ -10,7 +10,7 @@ const DateSchema = mongoose.Schema ({
         type: Date,
         required: true
     },
-    done: {
+    status: {
         type: Boolean,
         default: false
     },
