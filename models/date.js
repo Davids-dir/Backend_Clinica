@@ -10,12 +10,12 @@ const DateSchema = mongoose.Schema ({
         type: Date,
         required: true
     },
-    status: {
-        type: Boolean,
-        default: false
-    },
     notes: {
         type: String
+    },
+    customer: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'customer'
     }
 })
 

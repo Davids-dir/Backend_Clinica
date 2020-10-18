@@ -3,11 +3,11 @@ const router = require ('express').Router ();
 const DateController = require ('../controllers/DateController');
 
 // Acciones sobre la tabla de citas y ENDPOINTS
-router.post ('/create', DateController.create);
+router.post ('/create/:_id', DateController.create);
 
-router.get ('/show/:id', DateController.show);
+router.get ('/show/:_id', DateController.show);
 
-router.delete ('/remove/:id', DateController.cancelDate);
+router.delete ('/remove/:_id', DateController.cancelDate);
 
 // Exporto el acceso al archivo
 module.exports = router;

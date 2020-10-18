@@ -20,7 +20,7 @@ const CustomerSchema = mongoose.Schema ({
     },
     dates: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Date',
+        ref: 'date',
     },]
 })
 
