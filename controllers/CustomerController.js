@@ -59,16 +59,6 @@ const CustomerController = {
         }
     },
 
-    async dates (req, res) {
-        try {
-            const showDates = await CustomerModel.findById ( req.params ).populate ('dates')
-            res.status (200).send ({ showDates })
-        } 
-        catch (error) {
-            res.status (500).send ({ message: 'Ha habido un problema al realizar la operacion.' })
-        }
-    },
-
     // Metodo para realizar LOGOUT de la aplicacion
     async logout (req, res) {
 

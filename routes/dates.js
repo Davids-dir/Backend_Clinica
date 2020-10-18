@@ -5,7 +5,7 @@ const DateController = require ('../controllers/DateController');
 // Acciones sobre la tabla de citas y ENDPOINTS
 router.post ('/create/:_id', DateController.create);
 
-router.get ('/show/:_id', DateController.show);
+router.get ('/show/:_id', DateController.dates);
 
 router.delete ('/remove/:_id', DateController.cancelDate);
 
