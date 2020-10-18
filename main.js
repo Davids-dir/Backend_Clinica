@@ -1,6 +1,7 @@
 // Inicio de la Aplicacion
 const express = require ('express');
 const app = express ();
+const PORT = 3000;
 
 // Acceso al archivo de configuracion de la DB
 const dbConnect = require ('./config/db_connect');
@@ -20,4 +21,4 @@ app.use ('/dates',datesRouter);
 dbConnect ();
 
 // Inicio del servidor
-app.listen (3000, () => console.log ('Server is up...'));
+app.listen (PORT, () => console.log ('Server is up...'));
