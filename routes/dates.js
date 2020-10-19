@@ -7,7 +7,7 @@ router.post ('/create/:_id', DateController.create);
 
 router.get ('/show/:_id', DateController.dates);
 
-router.delete ('/remove/:_id', DateController.cancelDate);
+router.delete ('/remove/:id', DateController.cancelDate);
 
 // Exporto el acceso al archivo
 module.exports = router;
