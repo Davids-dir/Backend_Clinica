@@ -10,18 +10,15 @@ const DateController = {
     async create (req, res) {
 
         try {
-            const newDate = await new DateModel  ({
+            const newDate = await DateModel .create ({
                 reason: req.body.reason,
                 day: req.body.day,
-                notes: req.body.notes
+                notes: req.body.notes,
+                customer: req.params._id
             })
 
             // Añadir la cita creada al cliente
-            const customer = await CustomerModel.findById ( req.params )
-            newDate.customer = customer;
-            await newDate.save ();
-            customer.dates.push (newDate);
-            await customer.save ();
+            const customer = await CustomerModel.findByIdAndUpdate ( req.params._id, { $push: {dates: newDate._id}})
 
             res.status (201).send ({ newDate, message: `La cita ha sido creada con exito para el dia ${newDate.day}.`});
         } 
@@ -33,7 +30,7 @@ const DateController = {
     // Mostrar las citas de un cliente
     async dates (req, res) {
         try {
-            const showDates = await CustomerModel.findById ( req.params ).populate ('dates')
+            const showDates = await CustomerModel.findById ( req.params._id ).populate ('dates')
             res.status (200).send ({ showDates })
         } 
         catch (error) {
@@ -44,7 +41,13 @@ const DateController = {
     // Cancelar una cita especifica
     async cancelDate ( req, res ) {
         try {
-            const remove = await DateModel.findByIdAndDelete ({ id: req.params.id })
+            const remove = await DateModel.findByIdAndDelete ( req.params._id )
+            await CustomerModel.findOneAndUpdate ({
+                dates: req.params._id
+            },
+            {
+                $pull: {dates: req.params._id}
+            })
             res.status (201).send ({ message: 'La cita ha sido cancelada con exito.' })
         } 
         catch (error) {
