@@ -24,7 +24,7 @@ const CustomerController = {
                 password: encryptPass
             }).save ();
             
-            res.status (201).send ({ message: 'Cliente dado de alta con exito.' });
+            res.status (201).send ({ message: 'Cliente dado de alta con exito.', newCostumer });
         } 
         catch (error) {
             res.status (500).send ({ message: 'No se ha podido dar de alta al cliente.' });
