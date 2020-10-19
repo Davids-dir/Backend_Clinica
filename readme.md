@@ -31,12 +31,16 @@ You can add new costumers into your Database, your costumers can Login into thei
 ## 📝 Avaible Endpoints
 #### Customers
 **POST:** */signup*
+
 **POST:** */login*
+
 **GET:** */logout/email*
 
 #### Dates
 **POST:** */create/id*
+
 **GET:** */show/id*
+
 **DELETE:** */remove/id*
 
 
