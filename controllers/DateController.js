@@ -44,7 +44,7 @@ const DateController = {
     // Cancelar una cita especifica
     async cancelDate ( req, res ) {
         try {
-            const remove = await DateModel.findByIdAndDelete ({ id: req.params.id }).populate ('dates')
+            const remove = await DateModel.findByIdAndDelete ({ id: req.params.id })
             res.status (201).send ({ message: 'La cita ha sido cancelada con exito.' })
         } 
         catch (error) {
