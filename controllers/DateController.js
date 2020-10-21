@@ -6,7 +6,7 @@ const { findById, findOne, find } = require('../models/date');
 // Creacion del objeto y sus metodos
 const DateController = {
 
-    // Crear una cita y asignarka al cliente
+    // Crear una cita y asignarla al cliente
     async create (req, res) {
 
         try {
@@ -42,18 +42,13 @@ const DateController = {
     async cancelDate ( req, res ) {
         try {
             const remove = await DateModel.findByIdAndDelete ( req.params._id )
-            await CustomerModel.findOneAndUpdate ({
-                dates: req.params._id
-            },
-            {
-                $pull: {dates: req.params._id}
-            })
+            await CustomerModel.findOneAndUpdate ({ dates: req.params._id }, { $pull: {dates: req.params._id }})
             res.status (201).send ({ message: 'La cita ha sido cancelada con exito.' })
-        } 
+        }   
         catch (error) {
             res.status (500).send ({ message: 'Ha habido un problema al realizar la operacion.', error })
         }
-    }
+        }
 }
 
 // Exporto el archivo
