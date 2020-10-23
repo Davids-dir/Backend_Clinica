@@ -18,3 +18,5 @@ logger.stream = {
         logger.info (message);
     }
 }
+
+module.exports = logger;
