@@ -16,6 +16,8 @@
     "heroku": "^7.46.0",
     "moments": "0.0.2",
     "mongoose": "^5.10.9",
-    "nodemon": "^2.0.5"
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.5",
+    "winston": "^3.3.3"
   }
 }
