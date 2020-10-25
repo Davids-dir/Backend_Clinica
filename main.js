@@ -2,7 +2,7 @@
 const express = require ('express');
 const morgan = require('morgan');
 const app = express ();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const CORS = require ('./middleware/cors');
 
 // Acceso al archivo de configuracion de la DB
