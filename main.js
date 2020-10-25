@@ -15,6 +15,7 @@ const { loggers } = require('winston');
 
 // Middleware
 app.use (express.json ());
+app.use (CORS);
 app.use (morgan ('combined', {stream: loggers.stream}))
 
 // Rutas de uso y ENDPOINTS
