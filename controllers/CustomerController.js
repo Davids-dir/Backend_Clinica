@@ -12,11 +12,11 @@ const CustomerController = {
     // Metodo para Registrar un nuevo cliente en la DB
     async signup  (req, res) {
         
-        // Encriptado de la contraseña
-        let encryptPass = await crypt.hash (req.body.password, saltRounds)
-        
         try {
-
+            
+            // Encriptado de la contraseña
+            let encryptPass = await crypt.hash (req.body.password, saltRounds)
+            
             const newCustomer = await new CustomerModel ({
                 name: req.body.name,
                 surname: req.body.surname,
