@@ -10,6 +10,10 @@ const CustomerSchema = mongoose.Schema ({
         type: String,
         required: true
     },
+    phone: {
+        type: Number,
+        required: true
+    },
     email: {
         type: String,
         required: true,
@@ -18,6 +22,9 @@ const CustomerSchema = mongoose.Schema ({
     password: {
         type: String,
         required: true
+    },
+    debt: {
+        type: Number
     },
     dates: [{
         type: mongoose.Schema.Types.ObjectId,

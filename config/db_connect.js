@@ -1,10 +1,9 @@
 const dbConnect = () => {
 
     const mongoose = require ('mongoose');
-    const URI = process.env.URI ||  'mongodb+srv://David_Admin:v4OSfaZtEmqxhh9l@bootcamp.xi7ll.mongodb.net/agenda_clinica?retryWrites=true&w=majority';
-   
-
-    //'mongodb://localhost:27017/Clinica_Local'
+    const URI = process.env.URI ||  'mongodb://localhost:27017/Clinica_Local';
+    
+    // 'mongodb+srv://David_Admin:v4OSfaZtEmqxhh9l@bootcamp.xi7ll.mongodb.net/agenda_clinica?retryWrites=true&w=majority';
     mongoose.connect ( URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
