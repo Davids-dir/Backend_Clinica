@@ -21,7 +21,13 @@ const CustomerSchema = mongoose.Schema ({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        validate: {
+            validator: function (v) {
+                return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/.test(v);
+            },
+            message: () => 'La contraseña debe contener al menos una minúscula, una mayúscula, un número,un carácter especial, y debe estar entre 8 y 10 carácteres de longitud!'
+        },
     },
     debt: {
         type: Number
@@ -29,7 +35,11 @@ const CustomerSchema = mongoose.Schema ({
     dates: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'date',
-    },]
+    },],
+    role :{
+        type: String,
+        enum: ['admin', 'customer']
+    }
 })
 
 const CustomerModel = mongoose.model ('customer', CustomerSchema);

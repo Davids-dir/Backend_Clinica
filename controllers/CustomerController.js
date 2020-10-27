@@ -14,7 +14,7 @@ const CustomerController = {
         try {
 
             // Encriptado de la contraseña
-            let encryptPass = await crypt.hash(req.body.password, saltRounds)
+            let encryptPass = await crypt.hash (req.body.password, saltRounds)
 
             const newCustomer = await CustomerModel.create({
                 name: req.body.name,
@@ -32,30 +32,30 @@ const CustomerController = {
     },
 
     // Metodo para realizar LOGIN
-    async login(req, res) {
+    async login (req, res) {
 
         try {
 
-            const loginCostumer = await CustomerModel.findOne({
+            const loginCostumer = await CustomerModel.findOne ({
                 email: req.body.email,
             })
 
             if (!loginCostumer) {
-                res.status(201).send({ message: 'Las credenciales introducidas no son validas.' })
+                res.status(201).send ({ message: 'Las credenciales introducidas no son validas.' })
             }
             else {
-                let passCheck = await crypt.compare(req.body.password, loginCostumer.password);
+                let passCheck = await crypt.compare (req.body.password, loginCostumer.password);
 
                 if (passCheck) {
-                    res.status(201).send({ message: `Bienvenido de nuevo ${loginCostumer.name}.` })
+                    res.status(201).send ({ message: `Bienvenido de nuevo ${loginCostumer.name}.` })
                 }
                 else {
-                    res.status(201).send({ message: 'Las credenciales introducidas no son validas.' })
+                    res.status(201).send ({ message: 'Las credenciales introducidas no son validas.' })
                 };
             };
         }
         catch (error) {
-            res.status(500).send({ message: 'Se ha producido un error.', error })
+            res.status(500).send ({ message: 'Se ha producido un error.', error })
         }
     },
 
@@ -63,19 +63,19 @@ const CustomerController = {
     async logout(req, res) {
 
         try {
-            const logoutCostumer = await CustomerModel.findOne({
+            const logoutCostumer = await CustomerModel.findOne ({
                 email: req.params.email
             })
 
             if (!logoutCostumer) {
-                res.status(201).send({ message: 'Las credenciales introducidas no son validas.' })
+                res.status(201).send ({ message: 'Las credenciales introducidas no son validas.' })
             }
             else {
-                res.status(201).send({ message: 'La sesion se ha cerrado correctamente.' })
+                res.status(201).send ({ message: 'La sesion se ha cerrado correctamente.' })
             }
         }
         catch (error) {
-            res.status(500).send({ message: 'Se ha producido un error.', error })
+            res.status(500).send ({ message: 'Se ha producido un error.', error })
         };
     }
 }
