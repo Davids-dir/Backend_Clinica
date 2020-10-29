@@ -1,9 +1,7 @@
 // Requisitos del archivo y accesos
-const CustomerModel = require('../models/customer');
-const mongoose = require('mongoose');
+const CustomerModel = require('../models/customer.js');
 const crypt = require('bcrypt');
 const saltRounds = 9;
-const { findOne } = require('../models/customer');
 
 // Creacion del objeto y sus metodos
 const CustomerController = {
@@ -32,8 +30,7 @@ const CustomerController = {
                 email: req.body.email,
                 password: encryptPass,
                 debt: req.body.debt,
-                role: req.body.role
-
+                role: req.body.role,
             });
 
             res.status(201).send({ message: 'Cliente dado de alta con exito.', newCustomer});
@@ -45,7 +42,7 @@ const CustomerController = {
     },
 
     // Metodo para realizar LOGIN
-    async login (req, res) {
+    async login ( req, res ) {
 
         try {
 
@@ -53,23 +50,23 @@ const CustomerController = {
                 email: req.body.email,
             })
 
-            if (!loginCostumer) {
-                res.status(201).send ({ message: 'Las credenciales introducidas no son validas.' })
+            if ( ! loginCostumer ) {
+                res.status (400).send ({ message: 'Las credenciales introducidas no son validas.' })
             }
             else {
                 let passCheck = await crypt.compare (req.body.password, loginCostumer.password);
 
                 if (passCheck) {
-                    res.status(201).send ({ message: `Bienvenido de nuevo ${loginCostumer.name}.` })
+                    const token = loginCostumer.generateAuthToken ();
+                    res.status (201).send ({ message: `Bienvenido de nuevo ${ loginCostumer.name }.`, loginCostumer, token })
                 }
                 else {
-                    res.status(201).send ({ message: 'Las credenciales introducidas no son validas.' })
+                    res.status (400).send ({ message: 'Las credenciales introducidas no son validas.' })
                 };
             };
-            const token = customer.generateAuthToken ();
-            res.send ({ customer, token });
         }
         catch (error) {
+            console.error ( error )
             res.status(500).send ({ message: 'Se ha producido un error.', error })
         }
     },

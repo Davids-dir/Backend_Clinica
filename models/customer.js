@@ -37,14 +37,16 @@ const CustomerSchema = mongoose.Schema ({
         enum: ['admin', 'customer'],
         default: 'customer'
     },
-    tokens: [String]
+    token: {
+        type: String
+    }
 });
 
 // Metodo para asignar el token al usuario
 CustomerSchema.methods.generateAuthToken = function () {
 
     const customer = this;
-    const token = jwt.sign ({ _id: customer._id }, 'secreto', { expiresIn: '2months' });
+    const token = jwt.sign ({ _id: customer._id }, 'secreto', { expiresIn: '2m' });
     return token;
 }
 
