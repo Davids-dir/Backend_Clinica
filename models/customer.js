@@ -1,4 +1,6 @@
+// Importamos las dependencias necesarias
 const mongoose = require ('mongoose');
+const jwt = require ('jsonwebtoken');
 
 // Modelo de la tabla CLIENTES
 const CustomerSchema = mongoose.Schema ({
@@ -21,13 +23,7 @@ const CustomerSchema = mongoose.Schema ({
     },
     password: {
         type: String,
-        required: true,
-        validate: {
-            validator: function (v) {
-                return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/.test(v);
-            },
-            message: () => 'La contraseña debe contener al menos una minúscula, una mayúscula, un número,un carácter especial, y debe estar entre 8 y 10 carácteres de longitud!'
-        },
+        required: true
     },
     debt: {
         type: Number
@@ -38,11 +34,20 @@ const CustomerSchema = mongoose.Schema ({
     },],
     role :{
         type: String,
-        enum: ['admin', 'customer']
-    }
-})
+        enum: ['admin', 'customer'],
+        default: 'customer'
+    },
+    tokens: [String]
+});
 
+// Metodo para asignar el token al usuario
+CustomerSchema.methods.generateAuthToken = function () {
+
+    const customer = this;
+    const token = jwt.sign ({ _id: customer._id }, 'secreto', { expiresIn: '2months' });
+    return token;
+}
+
+// Exporto el modelo
 const CustomerModel = mongoose.model ('customer', CustomerSchema);
-
-
 module.exports = CustomerModel;

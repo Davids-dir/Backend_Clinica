@@ -1,6 +1,7 @@
 // Requisitos del archivo y accesos
 const router = require ('express').Router ();
 const CustomerController = require ('../controllers/CustomerController');
+const auth = require ('../middleware/auth');
 
 // Acciones del cliente y ENDPOINTS
 router.post ('/signup', CustomerController.signup);
