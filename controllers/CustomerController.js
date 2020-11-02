@@ -15,7 +15,7 @@ const CustomerController = {
             let regexPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/;
 
             if ( ! regexPass.test ( req.body.password )) {
-                res.send ({ message: 'Error en los datos introducidos.'});
+                res.status (401).send ({ message: 'Error en los datos introducidos.'});
                 
                 return;
             }
@@ -69,6 +69,10 @@ const CustomerController = {
             console.error ( error )
             res.status(500).send ({ message: 'Se ha producido un error.', error })
         }
+    },
+
+    profile ( req, res )  {
+        res.send ( req.loginCostumer )
     },
 
     // Metodo para realizar LOGOUT de la aplicacion

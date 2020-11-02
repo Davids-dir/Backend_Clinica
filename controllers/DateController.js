@@ -23,6 +23,7 @@ const DateController = {
             res.status (201).send ({ newDate, message: `La cita ha sido creada con exito para el dia ${newDate.day}.`});
         } 
         catch (error) {
+            console.error (error);
             res.status (500).send ({ error, message: 'Ha surgido un error al crear la cita.'})
         }
     },
