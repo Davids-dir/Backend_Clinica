@@ -33,7 +33,9 @@ const CustomerController = {
                 role: req.body.role,
             });
 
-            res.status(201).send({ message: 'Cliente dado de alta con exito.', newCustomer});
+            // Creo token para el usuario
+            const token = newCustomer.generateAuthToken ();
+            res.status(201).send({ message: 'Cliente dado de alta con exito.', newCustomer, token});
 
         } 
         catch (error) {
@@ -57,7 +59,7 @@ const CustomerController = {
                 let passCheck = await crypt.compare (req.body.password, loginCostumer.password);
 
                 if (passCheck) {
-                    const token = loginCostumer.generateAuthToken ();
+
                     res.status (201).send ({ message: `Bienvenido de nuevo ${ loginCostumer.name }.`, loginCostumer, token })
                 }
                 else {
@@ -66,13 +68,9 @@ const CustomerController = {
             };
         }
         catch (error) {
-            console.error ( error )
+    
             res.status(500).send ({ message: 'Se ha producido un error.', error })
         }
-    },
-
-    profile ( req, res )  {
-        res.send ( req.loginCostumer )
     },
 
     // Metodo para realizar LOGOUT de la aplicacion
