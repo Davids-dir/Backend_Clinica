@@ -60,7 +60,7 @@ const CustomerController = {
 
                 if (passCheck) {
 
-                    res.status (201).send ({ message: `Bienvenido de nuevo ${ loginCostumer.name }.`, loginCostumer, token })
+                    res.status (201).send ({ message: `Bienvenido de nuevo ${ loginCostumer.name }.`, loginCostumer })
                 }
                 else {
                     res.status (400).send ({ message: 'Las credenciales introducidas no son validas.' })
